@@ -26,10 +26,12 @@ jobs:
       run: ls -al
 
     # Since there's no Ada environment, I neet to set up one
+    # GNAT Community 2018 ships with GNATCOLL, so you will not need to compile it yourself. 
+    # However, in this action, there's no community-2018 option. So switch fsf.
     - name: Set up Ada environment
       uses: ada-actions/toolchain@v0.2.0
       with:
-          distrib: community
+          distrib: fsf
           target: native
       
     # Runs a single command using the runners shell
