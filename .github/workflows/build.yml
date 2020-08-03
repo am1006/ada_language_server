@@ -25,8 +25,12 @@ jobs:
     - name: List files
       run: ls -al
 
-    - name: Check GPR version
-      run: which gprbuild
+    # Since there's no Ada environment, I neet to set up one
+    - name: Set up Ada environment
+    - uses: ada-actions/toolchain@dev
+      with:
+          distrib: community
+          target: native
       
     # Runs a single command using the runners shell
     - name: Build the binary file
