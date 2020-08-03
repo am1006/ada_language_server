@@ -29,7 +29,7 @@ jobs:
     # GNAT Community 2018 ships with GNATCOLL, so you will not need to compile it yourself. 
     # However, in this action, there's no community-2018 option. So switch fsf.
     - name: Set up Ada environment
-      uses: am1006/toolchain@v0.3.0
+      uses: am1006/toolchain@0.3.0
       with:
           distrib: community
           target: native
