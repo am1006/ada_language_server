@@ -29,15 +29,23 @@ jobs:
     # GNAT Community 2018 ships with GNATCOLL, so you will not need to compile it yourself. 
     # However, in this action, there's no community-2018 option. So switch fsf.
     - name: Set up Ada environment
-      uses: am1006/toolchain@0.3.0
+      uses: am1006/toolchain@v0.2.0
       with:
           distrib: community
           target: native
-          community_year: 2018
+          community_year: 2020
+
+    - name: Build GNATCOLL
+      run: |
+          git clone https://github.com/AdaCore/gnatcoll-core.git
+          cd gnatcoll-core/
+          make setup
+          make
+          make install
 
     - name: echo PATH
       run: | 
-          export PATH="/usr/bin:$PATH"
+          # export PATH="/usr/bin:$PATH"
           echo $PATH
 
     # Runs a single command using the runners shell
