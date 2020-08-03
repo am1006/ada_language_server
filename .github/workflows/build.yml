@@ -36,7 +36,9 @@ jobs:
           community_year: 2018
 
     - name: echo PATH
-      run: echo $PATH
+      run: | 
+          export PATH="/usr/bin:$PATH"
+          echo $PATH
 
     # Runs a single command using the runners shell
     - name: Build the binary file
