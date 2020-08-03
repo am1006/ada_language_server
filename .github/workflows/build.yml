@@ -24,6 +24,9 @@ jobs:
 
     - name: List files
       run: ls -al
+
+    - name: Check GPR version
+      run: which gprbuild
       
     # Runs a single command using the runners shell
     - name: Build the binary file
