@@ -33,7 +33,7 @@ jobs:
       with:
           distrib: community
           target: native
-          community_year: 2018
+          community_year: 2019
       
     # Runs a single command using the runners shell
     - name: Build the binary file
