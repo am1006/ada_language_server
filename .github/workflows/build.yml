@@ -33,8 +33,14 @@ jobs:
       with:
           distrib: community
           target: native
-          community_year: 2019
       
+    - name: Build GNATCOLL
+      run: |
+          git clone https://github.com/AdaCore/gnatcoll-core.git
+          cd gnatcoll-core/
+          make setup
+          make install
+
     # Runs a single command using the runners shell
     - name: Build the binary file
       run: make
