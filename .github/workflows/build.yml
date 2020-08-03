@@ -31,8 +31,9 @@ jobs:
     - name: Set up Ada environment
       uses: ada-actions/toolchain@v0.2.0
       with:
-          distrib: fsf
+          distrib: community
           target: native
+          community_year: 2018
       
     # Runs a single command using the runners shell
     - name: Build the binary file
