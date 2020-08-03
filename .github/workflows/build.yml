@@ -35,6 +35,9 @@ jobs:
           target: native
           community_year: 2018
 
+    - name: echo PATH
+      run: echo $PATH
+
     # Runs a single command using the runners shell
     - name: Build the binary file
       run: make
