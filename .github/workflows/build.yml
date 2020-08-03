@@ -38,6 +38,7 @@ jobs:
     - name: Build GNATCOLL
       run: |
           git clone https://github.com/AdaCore/gnatcoll-core.git
+          git checkout lts-20
           cd gnatcoll-core/
           make setup
           make
