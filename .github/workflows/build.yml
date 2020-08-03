@@ -39,7 +39,7 @@ jobs:
       run: |
           git clone https://github.com/AdaCore/gnatcoll-core.git
           cd gnatcoll-core/
-          git checkout lts-20
+          git checkout 20.2
           make setup
           make
           make install
