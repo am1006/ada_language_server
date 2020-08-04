@@ -41,6 +41,12 @@ jobs:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
+    - name: Set up homebrew
+      run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+          brew update
+          brew install gmp
+
     - name: Build GNATCOLL core
       run: |
           git clone https://github.com/AdaCore/gnatcoll-core.git
