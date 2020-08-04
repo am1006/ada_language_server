@@ -35,7 +35,13 @@ jobs:
           target: native
           community_year: 2020
 
-    - name: Build GNATCOLL
+    - name: set up python3 environment
+      uses: actions/setup-python@v2
+      with:
+          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+          architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+
+    - name: Build GNATCOLL core
       run: |
           git clone https://github.com/AdaCore/gnatcoll-core.git
           cd gnatcoll-core/
@@ -44,13 +50,40 @@ jobs:
           make
           make install
 
+    - name: Build GNATCOLL Bindings
+      run: |
+          pwd
+          git clone https://github.com/AdaCore/gnatcoll-bindings.git
+          cd gnatcoll-bindings/
+          pwd
+          git checkout a2c2-2020
+          pwd
+          gmp/setup.py build
+          gmp/setup.py install
+          pwd
+          iconv/setup.py build
+          iconv/setup.py install
+
+    - name: Build the Libadalang lib
+      run: |
+          git clone https://github.com/AdaCore/libadalang.git
+          cd libadalang/
+          pwd
+          git checkout a2c2-2020-stable
+          virtualenv env
+          source env/bin/activate
+          pip install -r REQUIREMENTS.dev
+          python ada/manage.py generate
+          python ada/manage.py build
+          python ada/manage.py install ~/Libadalang/
+
     - name: echo PATH
       run: | 
-          # export PATH="/usr/bin:$PATH"
-          echo $PATH
+          export GPR_PROJECT_PATH="~/Libadalang/:$GPR_PROJECT_PATH"
+          echo $PATH $GPR_PROJECT_PATH
 
     # Runs a single command using the runners shell
-    - name: Build the binary file
+    - name: Build the ada-lsp binary file
       run: make
 
     # Upload
