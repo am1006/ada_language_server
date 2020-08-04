@@ -44,8 +44,15 @@ jobs:
     - name: Set up homebrew
       run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+          echo "====================="
           brew update
+
+          echo "====================="
           brew install gmp
+          
+          echo "====================="
+          export C_INCLUDE_PATH="/usr/local/Cellar/gmp/6.2.0/include/:$C_INCLUDE_PATH"
+
 
     - name: Build GNATCOLL core
       run: |
